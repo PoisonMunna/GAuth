@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer type="module"></script>
+</head>
+<body>
+    <div class="dashboard-container" style="color: rgb(182, 68, 68);">
+        <h2>Welcome, <span id="userName"></span> </h2>
+        <br>
+        <img id="userPhoto" style="border-radius: 100%; width: 150px; height: 150px;">
+        <br>Your Email id:
+        <p style="color: rgb(94, 180, 140);" id="userEmail"></p>
+        <h3>This is  a dummy website. For testing Google Authorization. Beware from frauds.</h3>
+        <button id="logoutBtn">Logout</button>
+    </div>
+
+    <script type="module" src="app.js"></script>
+    <script>
+        const userData = sessionStorage.getItem("user");
+        
+        if (userData) {
+            const user = JSON.parse(userData);
+            
+            document.getElementById("userName").textContent = user.displayName;
+            document.getElementById("userEmail").textContent = user.email;
+            document.getElementById("userPhoto").src = user.photoURL;
+        } else {
+            window.location.href = "index.html";
+        }
+
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+            logout();
+        });
+    </script>
+</body>
+</html>
